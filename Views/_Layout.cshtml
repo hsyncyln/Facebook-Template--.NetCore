@@ -1,0 +1,363 @@
+﻿
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <style>
+        #message-down-box {
+            margin-top: 87vh;
+            margin-left: 69vw;
+            position: fixed;
+            width: 13vw;
+            height: 5vh;
+            background-color: white;
+            border-radius: 4%;
+            border: 1px solid gray;
+            display: none;
+        }
+
+        #message-box {
+            margin-top: 46vh;
+            margin-left: 62vw;
+            position: fixed;
+            width: 18vw;
+            height: 46vh;
+            background-color: white;
+            border-radius: 4%;
+            border: 1px solid gray;
+            display: none;
+        }
+
+        #message-input {
+            margin-top: 0%;
+            margin-left: 0;
+            position: fixed;
+            width: 18vw;
+            height: 5vh;
+            background-color: white;
+            border-radius: 4%;
+            border: 1px solid gray;
+        }
+
+        #messages {
+            height: 16vw;
+            width: 100%;
+        }
+    </style>
+</head>
+<body id="mainbody">
+    <!-- blue bar on top -->
+    <div id="blue-div" style="z-index:100;">
+        <div id="inner-div">
+            <img src="~/imgs/title_logo.png" alt="fb" height="27" width="27" id="logo-img">
+            <form id="search-form">
+                <input type="text" placeholder="Ara" id="search-input" class="search">
+                <button id="search-button" class="search">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+            <img src="~/imgs/@Model.MainUser.ProfilePhoto.ImageLink" style="margin-right:46%;" alt="profile picture" height="25" width="25" id="prof-pic-top" class="right-side prof-pic">
+
+            @using (Html.BeginForm("Index", "Profile", FormMethod.Post))
+            {
+                <button type="submit" name="id" value="@Model.MainUser.UserId" id="name-span" class="right-side bar-text" style="background-color:transparent;border:none;font-weight:bold;"> @Model.MainUser.FirstName</button>
+            }
+            @using (Html.BeginForm("Index", "Main", FormMethod.Post))
+            {
+                <button type="submit" name="id" value="@Model.MainUser.UserId" id="home-span" class="right-side bar-text" style="background-color:transparent;border:none;font-weight:bold;">Home</button>
+            }
+
+
+            <div class="right-side border-div" id="border-div-0"> </div>
+
+            <!-- START: Right-Side -->
+            <img src="~/imgs/friend_requests.png" alt="friend requests" height="25" width="25" id="friends-logo" class="right-side">
+            <img src="~/imgs/messenger_logo.png" alt="messenger" height="22" width="22" id="mess-logo" class="right-side">
+            <img src="~/imgs/notifications_logo.png" alt="notifications" height="22" width="22" id="notif-logo" class="right-side">
+
+            <div class="right-side border-div" id="border-div-1"> </div>
+
+            <img src="~/imgs/help_logo.png" alt="help" height="22" width="22" id="help-logo" class="right-side">
+            <a id="down-arrow" class="right-side">
+                <i class="fas fa-caret-down"></i>
+            </a>
+            <!-- END: Right-Side -->
+        </div>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+
+    <!-- chat -->
+    <div class="chat-div">
+        <div class="chat-header">
+            <div class="grey-header chat-header contact-pages-header">
+                CONTACT PAGES
+            </div>
+            <div id="see-all-header" class="grey-header chat-header">
+                SEE ALL
+            </div>
+        </div>
+
+        <div id="contact-pages">
+            <i class="arrow-icon" id="left-arrow"> </i>
+            <img src="~/imgs/contact-page-0.jpg" alt="CP0" class="prof-pic contact-page-pic">
+            <img src="~/imgs/contact-page-1.png" alt="CP1" class="prof-pic contact-page-pic">
+            <img src="~/imgs/contact-page-2.png" alt="CP2" class="prof-pic contact-page-pic">
+            <i class="arrow-icon" id="right-arrow"> </i>
+        </div>
+
+        <div class="chat-header">
+            <div class="grey-header chat-header contact-pages-header">
+                Bağlantılar
+            </div>
+        </div>
+
+        <div id="online-friends">
+            @foreach (var friend in Model.ContactFriends)
+            {
+                <button name="friendid" onclick="MessageBoxStart(this)" value="@friend.UserId" id="friend-online" style="border:none;background-color:transparent;display:block;width:100%;">
+                    <div class="online-friend">
+                        <img src="~/imgs/@friend.ProfilePhoto.ImageLink" alt="DH" class="prof-pic online-friend-pic">
+                        <div class="friend-name"> @friend.FirstName @friend.LastName </div>
+                        <i class="online-icon"> </i>
+                    </div>
+                </button>
+
+            }
+
+
+        </div>
+        <!--
+            <div class="container">
+            <div class="row">&nbsp;</div>
+            <div class="row">
+                <div class="col-2">User</div>
+                <div class="col-4"><input type="text" id="userInput" /></div>
+            </div>
+            <div class="row">
+                <div class="col-2">Message</div>
+                <div class="col-4"><input type="text" id="messageInput" /></div>
+            </div>
+            <div class="row">&nbsp;</div>
+            <div class="row">
+                <div class="col-6">
+                    <input type="button" id="sendButton" value="Send Message" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <ul id="messagesList"></ul>
+            </div>
+        </div>-->
+
+        <!--
+    <div class="chat-header">
+        <div id="group-conv-header" class="grey-header chat-header contact-pages-header">
+            Grup Konuşmaları
+        </div>
+    </div>
+
+    <div id="group-conversations">
+        <div class="online-friend">
+            <img src="~/imgs/clark.jpg" alt="C" class="prof-pic online-friend-pic">
+            <div class="friend-name"> Division 3 </div>
+            <i class="online-icon"> </i>
+        </div>
+
+        <div class="online-friend">
+            <img src="~/imgs/amahl-farouk.png" alt="AH" class="prof-pic online-friend-pic">
+            <div class="friend-name"> Farouk's bitchez </div>
+            <i class="online-icon"> </i>
+        </div>
+    </div>
+        -->
+
+
+    </div>
+    <div id="chat-search" style="margin-top:85vh;margin-left:84vw;position:fixed;">
+        <i class="post-property-icon comment-inner-icon" id="chat-search-icon"> </i>
+        <input type="text" placeholder="Search" id="chat-search-input">
+        <i class="post-property-icon comment-inner-icon chat-icons" id="chat-settings-icon"> </i>
+        <i class="post-property-icon comment-inner-icon chat-icons" id="chat-message-icon"> </i>
+        <i class="post-property-icon comment-inner-icon chat-icons" id="chat-group-icon"> </i>
+
+    </div>
+
+   
+
+    <div id="message-box">
+
+
+        <div onclick="MessageBoxChangeDown()" name="message-up-name" class="grey-header suggestions-header" id="message-box-top" style="width:100%;padding-left:2%;padding-top:2.5%;margin-left:1%;">
+
+            <!--  <img  name="message-box-photo" alt="profile picture" height="20" width="20" id="prof-pic-left" class="prof-pic left-icon">-->
+            <div id="message-box-name" style="margin-top:5px;margin-right:0;float:left;width:auto;"> </div>
+            <i onclick="MessageBoxClose()" class="x-icon" draggable="false" style="margin-right:20px;float:right;margin-top:5px;"> </i>
+        </div>
+
+        <hr />
+        <div id="messages" style="overflow:auto;">
+            
+            <ul id="messagesList" style="padding:0px;" ></ul>
+
+
+        </div>
+
+        <div id="message-input">
+
+            <div style="display:inline-block;width:auto;height:auto;">
+                <input type="text" style="width:15vw;border:none;" placeholder="Bir mesaj yaz..." name="content" id="messageInput" />
+                <input type="button" id="sendButton" value="G" />
+                
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div id="message-down-box" onclick="MessageBoxChangeUp()">
+        <div class="grey-header" id="suggestions-header" style="padding-left:5%;padding-top:5.5%;">
+
+            <!-- <img src="" name="message-down-box-photo" alt="profile picture" height="20" width="20" id="prof-pic-left" class="prof-pic left-icon">-->
+            
+            <div id="message-down-box-name"></div>
+            <i onclick="MessageBoxClose()" class="x-icon" draggable="false" style="margin-right:10%;z-index:100;"> </i>
+        </div>
+    </div>
+
+    <div style="display:none" id="repo"></div>
+
+    <script>
+
+        function MessageBoxStart(element) {
+            console.log(element);
+            console.log(element.value);
+            let repo = document.getElementById("repo");
+
+            if (repo.hasChildNodes() == true) {
+
+                let mfriend = document.getElementById("repo-friend");
+                mfriend.value = element.value;
+
+                let muser = document.getElementById("repo-user");
+                muser.value ="@Model.MainUser.UserId";
+
+            }
+            else {
+
+                let mfriend = document.createElement("input");
+                mfriend.value = element.value;
+                mfriend.id = "repo-friend";
+
+                let muser = document.createElement("input");
+                muser.value ="@Model.MainUser.UserId";
+                muser.id = "repo-user";
+
+                repo.appendChild(mfriend);
+                repo.appendChild(muser);
+            }
+            let messages = document.getElementById("messages")
+
+            let messagelist = document.getElementById("messagesList");
+            messages.removeChild(messagelist)
+
+            let newmessagelist = document.createElement("ul");
+            newmessagelist.id = "messagesList";
+            newmessagelist.style.cssText += "padding:0px;";
+            messages.appendChild(newmessagelist);
+
+            GetPast();
+            MessageBoxChangeUp();
+        }
+
+
+        function MessageBoxChangeDown() {
+            let mdownbox = document.getElementById("message-down-box");
+            let mbox = document.getElementById("message-box");
+
+            mdownbox.style["display"] = "block";
+            mbox.style["display"] = "none";
+
+            let mfriendid = document.getElementById("repo-friend").value;
+
+            @foreach(var friend in Model.ContactFriends)
+            {
+                <text>
+                    if (mfriendid == @friend.UserId) {
+
+                        let mdboxphoto = document.getElementsByName("message-down-box-photo");
+                        mdboxphoto.src = "~/imgs/@friend.ProfilePhoto.ImageLink";
+
+                        let mdboxname = document.getElementById("message-down-box-name");
+                        mdboxname.innerText = "@friend.FirstName @friend.LastName";
+
+                    }
+                </text>
+            }
+
+        }
+        function MessageBoxChangeUp() {
+            let mdownbox = document.getElementById("message-down-box");
+            let mbox = document.getElementById("message-box");
+
+            mdownbox.style["display"] = "none";
+            mbox.style["display"] = "block";
+
+            let mfriendid = document.getElementById("repo-friend");
+            console.log(mfriendid);
+
+            @foreach(var friend in Model.ContactFriends)
+            {
+                <text>
+                    if (mfriendid.value == @friend.UserId) {
+
+                        let mboxphoto = document.getElementsByName("message-box-photo");
+                        mboxphoto.src = "~/imgs/@friend.ProfilePhoto.ImageLink";
+
+                        let mboxname = document.getElementById("message-box-name");
+                        mboxname.innerText = "";
+                        mboxname.innerText = "@friend.FirstName @friend.LastName";
+                        console.log(mboxname);
+                    }
+                </text>
+            }
+
+
+            /*    let mboxphoto = document.getElementByName("message-up-photo");
+                mboxphoto.src="~/imgs/Model.MainUser.ProfilePhoto"*/
+
+        }
+        function MessageBoxClose() {
+            let mdownbox = document.getElementById("message-down-box");
+            let mbox = document.getElementById("message-box");
+
+            mdownbox.style["display"] = "none";
+            mbox.style["display"] = "none";
+
+        }
+    </script>
+
+    <!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/aspnet-signalr/1.1.4/signalr.js"></script>
+        <script src="~/js/script.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.1.0.min.js"></script>-->
+
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/chat.js"></script>
+
+
+
+</body>
+</html>

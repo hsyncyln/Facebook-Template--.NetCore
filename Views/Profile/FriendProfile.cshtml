@@ -1,0 +1,430 @@
+﻿@model Facebook.Models.ViewMain;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "../_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Facebook</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/css/style.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+
+    <style>
+
+        #background-image {
+            width: 100%;
+            height: 320px;
+            display: inline-block;
+        }
+
+        #profile-body {
+            width: 84%;
+            float: left;
+        }
+
+        #profile-main {
+            margin-top: -1.6vh;
+            margin-left: 8%;
+            width: 77%;
+            height: auto;
+        }
+
+        #profile-detail {
+            width: 100%;
+            height: 50px;
+            background-color: white;
+        }
+
+        #profile-top-detail {
+        }
+
+        #profile-profile-detail {
+            width: 61%;
+            height: 170px;
+            position: absolute;
+            background-color: transparent;
+            margin-left: 7%;
+            padding: 1%;
+            margin-top: 25vh;
+        }
+
+        #profile-profile-big-photo {
+            width: 160px;
+            height: 160px;
+            border: 0.2px solid black;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        #profile-profile-bottom {
+            width: 100%;
+            height: 27%;
+        }
+
+        .profile-profile-bottom-item {
+            margin-left: 2%;
+            margin-right: 2%;
+            height: 100%;
+            border: none;
+            background-color: white;
+            color: rgb(66, 103, 178);
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .profile-profile-bottom-item-line {
+            /* width:0.2px;
+            height:90%;
+            background-color:black;*/
+            display: inline-block;
+        }
+
+        #main-bottom-left {
+            width: 35%;
+            height: 100%;
+            margin-right: 1%;
+            margin-top: 2%;
+        }
+
+        #main-bottm-left-about {
+            width: 100%;
+            height: auto;
+            padding: 2%;
+            background-color: white;
+        }
+
+        #main-bottm-left-photos {
+            width: 100%;
+            height: auto;
+            padding: 2%;
+            background-color: white;
+            margin-top: 4%;
+        }
+
+        #main-bottm-left-friends {
+            width: 100%;
+            height: auto;
+            padding: 2%;
+            background-color: white;
+            margin-top: 4%;
+        }
+
+        #main-bottom-right {
+            margin-top: 2%;
+            width: 61.5%;
+            height: auto;
+            float: right;
+        }
+    </style>
+
+</head>
+
+<body style="margin-top:8vh;">
+
+    <div id="profile-profile-detail">
+
+        <div id="profile-profile-big-photo">
+            <img src="~/imgs/@Model.MainUser.ProfilePhoto.ImageLink" height="150" width="150" style="border-radius:50%;border:5px solid white;">
+        </div>
+        <div style="height:100%;width:660px; float:right;">
+            <h2 style="display:inline-block;color:white;margin-top:13%;font-weight:bold;font-size:24px;">@Model.MainUser.FirstName  @Model.MainUser.LastName</h2>
+            <button style="float:right;padding:5px 10px 5px 10px;margin-top:13%;background-color:white;border:none;">Hareketler Dökümü</button>
+            <button style="float:right;padding:5px 10px 5px 10px;margin-top:13%;background-color:white;margin-right:2%;border:none;">Bilgilerini Güncelle</button>
+            <div id="profile-profile-bottom" style="margin-top:1%;">
+
+                <button class="profile-profile-bottom-item">
+                    Zaman Tüneli
+                    <img src="~/imgs/down-arrow.svg" width=10 height=10 />
+                </button>
+                <div class="profile-profile-bottom-item-line"></div>
+                <button class="profile-profile-bottom-item">Hakkında</button>
+                <div class="profile-profile-bottom-item-line"></div>
+                <button class="profile-profile-bottom-item">Arkadaşlar</button>
+                <div class="profile-profile-bottom-item-line"></div>
+                <button class="profile-profile-bottom-item">Fotoğraflar</button>
+                <div class="profile-profile-bottom-item-line"></div>
+                <button class="profile-profile-bottom-item">
+                    Diğer
+                    <img src="~/imgs/down-arrow.svg" width=10 height=10 />
+                </button>
+                <div class="profile-profile-bottom-item-line"> </div>
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <div id="profile-top-detail"></div>
+
+    <div id="profile-body">
+        <div id="profile-main">
+            <div id="background-image">
+                <img src="~/imgs/bg_1.jpg" height="323" width="871">
+            </div>
+            <div id="profile-detail"></div>
+            <div id="main-bottom-left" style="display:inline-block;">
+                <div id="main-bottm-left-about">
+                    <img src="~/imgs/world.svg" width=16 height=16 style="margin-top:3%;margin-left:2%;" />
+                    <span style="font-size:17px;margin-left:1%;">Künye</span>
+                    <br /><br />
+                    <img src="~/imgs/comment.svg" width=20 height=20 style="margin-left:46%;" />
+                    <br />
+                    <span style="font-size:13px;margin-top:6%;text-align:center;display:block;">İnsanlara kendinle ilgili daha fazla bilgi vermek için kısa bir biyografi ekle.</span>
+                    <br />
+                    <a style="font-size:13px;text-align:center;display:block;color:blue;">Biyografi ekle</a>
+                    <br />
+                    <hr />
+                    <br />
+                    <img src="~/imgs/sydney-opera-house.svg" width=15 height=15 />
+                    <span style="margin-left:1%;font-size:13px;padding-bottom:1%;display:inline-block">İstanbul'da yaşıyor</span>
+                    <br />
+                    <img src="~/imgs/location.svg" width=15 height=15 />
+                    <span style="margin-left:1%;font-size:13px;padding-bottom:1%;display:inline-block">Memleketi İstanbul</span>
+                    <br />
+                    <img src="~/imgs/heart.svg" width=15 height=15 />
+                    <span style="margin-left:1%;font-size:13px">İlişkisi yok</span>
+                    <br /><br />
+                    <button type="submit" style="width:90%;margin-left:5%; padding:1%;">Detayları Düzenle</button>
+                    <br /><br />
+
+                </div>
+
+                <div id="main-bottm-left-photos">
+
+                    <span style="font-size:18px">Fotoğraflar</span>
+                    <span style="font-size:13px;color:blue;float:right;margin-top:0.5%;">Fotoğraf Ekle</span>
+
+                    @foreach (var photo in Model.Photos)
+                    {
+                        <img src="~/imgs/@photo.ImageLink" style="width:47%;height:100px;margin:1%;" />
+                    }
+
+                </div>
+                <div id="main-bottm-left-friends">
+
+                    <span style="font-size:18px">Arkadaşlar </span><span style="font-size:14.5px;">- @Model.ContactFriends.Count</span>
+                    <span style="font-size:12px;color:blue;float:right;margin-top:0.5%;">Arkadaşlarını Bul</span>
+                    <br /><br />
+                    @foreach (var friend in Model.ContactFriends)
+                    {
+                        <div style="display:inline-block;width:30%;height:100px;margin:1%;">
+                            <img src="~/imgs/@friend.ProfilePhoto.ImageLink" style="width:100%;height:100px;margin:1%;" />
+                            <br />
+                            <span style="display:inline-block;width:100%;text-align:center;color:blue;font-size:12px;">@friend.FirstName  @friend.LastName</span>
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+
+
+            <div id="main-bottom-right" style="display:inline-block;">
+                <div id="make-post" class="post-section" style="width:100%;">
+                    <div id="post-choices">
+                        <div id="make-post-div" class="post-div">
+
+                            Gönderi Oluştur
+                        </div>
+
+                    </div>
+
+                    @using (Html.BeginForm("SharePost", "Main", FormMethod.Post))
+                    {
+                        <div id="post-main-div">
+                            <img src="~/imgs/@Model.MainUser.ProfilePhoto.ImageLink" alt="prof pic" class="prof-pic post-prof-pic">
+                            <div style="display:inline-block;width:auto;height:auto;">
+                                <input type="text" placeholder="Ne düşünüyorsun, @Model.MainUser.FirstName?" name="content" id="post-text">
+                            </div>
+
+                        </div>
+
+                        <div id="post-additional">
+                            <div class="post-div additional-item">
+                                <i id="photo-icon" class="post-icon"> </i>
+                                Photo/Video
+                            </div>
+
+                            <div class="post-div additional-item">
+                                <i id="feeling-icon" class="post-icon"> </i>
+                                Feeling/Activity
+                            </div>
+
+                            <div class="post-div additional-item">
+                                <i id="more-icon" class="post-icon"> </i>
+                            </div>
+
+                            <button type="submit" name="userid" class="post-div additional-item" value="@Model.MainUser.UserId" style="background-color:rgb(66,103,178);float:right;padding-left:5%;padding-right:5%;color:white;border:none;font-weight:bold;padding-bottom:5%;">Paylaş</button>
+
+
+                        </div>
+                    }
+
+                </div>
+
+
+
+                @foreach (var post in Model.Posts)
+                {
+                    <div id="post-0" class="post-section post" style="height:auto;width:100%;">
+                        <div class="post-header">
+                            <img src="~/imgs/@post.User.ProfilePhoto.ImageLink" alt="LB" class="prof-pic post-prof-pic">
+                            <div class="post-info">
+                                <div class="my-day-name post-info-inner">
+                                    <span class="author-name"> @post.User.FirstName @post.User.LastName</span>
+
+                                    @if (false)
+                                    {
+                                        <span class="is-with"> is with </span>
+                                        <span class="is-with-name"> David Haller </span>
+                                    }
+                                </div>
+                                <div class="my-day-time post-time">
+                                    @((DateTime.Now - post.CreateDate).Hours) hr
+                                    <span class="dot"> · </span>
+                                    <i class="public-icon"> </i>
+                                </div>
+                            </div>
+                            <i class="dots-icon" id="post-dots"> </i>
+                        </div>
+
+                        @if (false)
+                        {
+                            <img src="~/imgs/david_and_lenny.jpg" alt="d&l" class="post-image">
+                        }
+                        <div style="margin:3%;">@post.Content</div>
+                        <div class="post-properties">
+                            @using (Html.BeginForm("MakePostLike", "Main", FormMethod.Post))
+                            {
+
+                                <div class="property-div" style="margin:0;padding-top:0;padding-bottom:5px;">
+                                    <button onclick="MakeLike(this)" type="submit" name="postid" value="@post.Id" style="background-color:transparent;padding:0;border:none;height:32px;display:inline-block;">
+
+                                        <i id="like-icon" class="post-property-icon"> </i>
+                                        Beğen
+                                    </button>
+
+                                    <input type="text" name="userid" value="@Model.MainUser.UserId" style="display:none;" />
+
+
+                                    <script>
+                                        function MakeLike(like) {
+                                            like.style["color"] = "blue";
+                                        }
+
+                                    </script>
+
+                                </div>
+
+
+                            }
+                            <div class="property-div">
+                                <i id="comment-icon" class="post-property-icon"> </i>
+                                Yorumlar
+                            </div>
+
+                            <div class="property-div">
+                                <i id="share-icon" class="post-property-icon"> </i>
+                                Paylaş
+                            </div>
+                        </div>
+
+                        <div class="comments-section" style="background-color:transparent;height:auto;">
+                            <div class="reactions">
+                                <i class="post-property-icon" id="love-icon"> </i>
+                                @if (post.Likes.Count == 1)
+                                {
+                                    @if (post.Likes[post.Likes.Count - 1].LikeUser.UserId == Model.MainUser.UserId)
+                                    {
+                                        <span>Sen</span>
+                                    }
+                                    else
+                                    {
+                                        @post.Likes[post.Likes.Count - 1].LikeUser.FirstName <span> </span> @post.Likes[post.Likes.Count - 1].LikeUser.LastName
+                                    }
+                                }
+                                @if (post.Likes.Count > 1)
+                                {
+                                    @if (post.Likes[post.Likes.Count - 1].LikeUser.UserId == Model.MainUser.UserId)
+                                    {
+                                        <span>Sen ve </span> @(post.Likes.Count - 1); <span>diğer kişi</span>
+                                    }
+                                    else
+                                    {
+                                        @post.Likes[post.Likes.Count - 1].LikeUser.FirstName <span> </span> @post.Likes[post.Likes.Count - 1].LikeUser.LastName <span> ve </span>
+                                        @(post.Likes.Count - 1); <span>diğer kişi</span>
+                                    }
+                                }
+                                @if (post.Likes.Count == 0)
+                                {
+                                    <span>0 kişi </span>
+                                }
+                                <div style="float:right;margin-right:2px;"><span>@post.Comments.Count Yorum</span></div>
+                            </div>
+
+                            @foreach (var comment in post.Comments)
+                            {
+                                <div class="comment" style="height:auto;">
+                                    <img src="~/imgs/@comment.CommentUser.ProfilePhoto.ImageLink" alt="AF" class="prof-pic post-prof-pic comment-prof-pic">
+                                    <div class="comment-wrapper" style="height:auto;display:block; ">
+                                        <div class="comment-text" style="width:auto;height:auto;background-color:rgb(233,235,238);">
+                                            <span class="comment-author"> @comment.CommentUser.FirstName  @comment.CommentUser.LastName </span>
+                                            &nbsp;
+                                            @comment.Content
+                                            &nbsp;&nbsp;
+                                            <div style="width:auto;height:6px;"></div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="comment-reaction" style="display:block;height:auto;width:426px;">
+                                        <span class="is-with-name"> Beğen </span>
+                                        <span class="dot"> · </span>
+                                        <span class="is-with-name"> Cevap Ver </span>
+                                        <span class="dot"> · </span>
+                                        <span class="comment-time"> @((DateTime.Now - comment.CreateDate).Hours) hr </span>
+                                        <div style="width:auto;height:6px;"></div>
+                                    </div>
+
+                                    @if (false)
+                                    {
+                                        <div class="replies-div">
+                                            <i class="reply-icon"> </i>
+                                            <img src="~/imgs/lenny-busker.png" alt="LB" class="prof-pic post-prof-pic comment-prof-pic replies-info-pic">
+                                            <div class="is-with-name replies-info">
+                                                Lenny Busker replied · 3 Replies
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            <div class="your-comment" style=" height:35px;">
+                                @using (Html.BeginForm("ShareComment", "Main", FormMethod.Post))
+                                {
+                                    <img src="~/imgs/@Model.MainUser.ProfilePhoto.ImageLink" alt="prof pic" class="prof-pic post-prof-pic comment-prof-pic">
+                                    <input type="text" name="content" placeholder="Yorum yaz..." class="comment-input" style="margin-left:4px;">
+                                    <i id="smiley-icon" class="post-property-icon comment-inner-icon"></i>
+                                    <i id="camera-icon" class="post-property-icon comment-inner-icon"></i>
+                                    <i id="gif-icon" class="post-property-icon comment-inner-icon"></i>
+                                    <i id="upload-photo-icon" class="post-property-icon comment-inner-icon"></i>
+                                    <input type="text" name="userid" value="@Model.MainUser.UserId" style="display:none" />
+                                    <input type="submit" name="postid" value="@post.Id" style="display:none" />
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                }
+
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,531 @@
+﻿@model Facebook.Models.ViewMain;
+@{
+    Layout = "../_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Facebook</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/css/style.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+
+    <style>
+
+        #sharepost{
+
+            width:100%;
+            height:auto;
+            border:1px solid black;
+            display:none;
+            background-color:white;
+            padding:3%;
+        }
+
+       
+    </style>
+
+</head>
+<body>
+
+   
+
+    <!-- fb body -->
+    <div class="fb-body">
+        <!-- left part of body -->
+        <div class="left-part">
+            <ul id="left-ul">
+                @using (Html.BeginForm("Index", "Profile", FormMethod.Post))
+                {
+                    
+                <li class="section-end">
+          
+                    <button onclick="activate(this.id)" id="left-part-name" class="left-part-item" type="submit" name="id" value="@Model.MainUser.UserId" style="background-color:transparent;border:none;height:25px" >
+                        <img src="~/imgs/@Model.MainUser.ProfilePhoto.ImageLink" alt="profile picture" height="20" width="20" id="prof-pic-left" class="prof-pic left-icon" >
+                        <div style="float:left;margin-left:1px;"> @Model.MainUser.FirstName  @Model.MainUser.LastName</div>
+                    </button>
+                </li>
+                }
+
+                <li>
+                    <a onclick="activate(this.id)" id="left-part-feed" class="active left-part-item" href="#news-feed">
+                        <i id="news-feed-icon" class="left-icon" draggable="false"> </i>
+                        Haber Kaynağı
+                    </a>
+                </li>
+
+                <li class="section-end">
+                    <a onclick="activate(this.id)" id="left-part-mess" class="left-part-item" href="#messenger">
+                        <i id="messenger-icon" class="left-icon" draggable="false"> </i>
+                        Messenger
+                    </a>
+                </li>
+
+                <li>
+                    <span class="grey-header"> Kısayollar </span>
+                </li>
+
+                <li>
+                    <a onclick="activate(this.id)" id="left-part-group0" class="left-part-item" href="#group0">
+                        <i id="group0-icon" class="left-icon" draggable="false"> </i>
+                        Operational Systems
+                    </a>
+                </li>
+
+
+                <li>
+                    <a onclick="activate(this.id)" id="left-part-group2" class="left-part-item section-end" href="#group2">
+                        <i id="group2-icon" class="left-icon" draggable="false"> </i>
+                        Game Development 2017 - Freeuni
+                    </a>
+                </li>
+
+                <li>
+                    <span class="grey-header"> Keşfet </span>
+                </li>
+
+                <li>
+                    <a onclick="activate(this.id)" id="left-part-events" class="left-part-item" href="#events">
+                        <i id="events-icon" class="left-icon" draggable="false"> </i>
+                        Events
+                    </a>
+                </li>
+
+                <li>
+                    <a onclick="activate(this.id)" id="left-part-groups" class="left-part-item" href="#groups">
+                        <i id="group1-icon" class="left-icon" draggable="false"> </i>
+                        Groups
+                    </a>
+                </li>
+
+                <li>
+                    <a onclick="activate(this.id)" id="left-part-pages" class="left-part-item" href="#pages">
+                        <i id="pages-icon" class="left-icon" draggable="false"> </i>
+                        Pages
+                    </a>
+                </li>
+
+                <li>
+                    <a onclick="activate(this.id)" id="left-part-on-this-day" class="left-part-item" href="#on-this-day">
+                        <i id="on-this-day-icon" class="left-icon" draggable="false"> </i>
+                        On This Day
+                    </a>
+                </li>
+
+                <li>
+                    <a onclick="activate(this.id)" id="left-part-photos" class="left-part-item" href="#photos">
+                        <i id="photos-icon" class="left-icon" draggable="false"> </i>
+                        Photos
+                    </a>
+                </li>
+
+                <li>
+                    <a onclick="activate(this.id)" id="left-part-friend-lists" class="left-part-item" href="#friend-lists">
+                        <i id="friend-lists-icon" class="left-icon" draggable="false"> </i>
+                        Friend Lists
+                    </a>
+                </li>
+
+                <li>
+                    <a onclick="activate(this.id)" id="left-part-manage-apps" class="left-part-item" href="#manage-apps">
+                        <i id="manage-apps-icon" class="left-icon" draggable="false"> </i>
+                        Manage Apps
+                    </a>
+                </li>
+
+                <li>
+                    <a onclick="activate(this.id)" id="left-part-pages-feed" class="left-part-item" href="#pages-feed">
+                        <i id="pages-feed-icon" class="left-icon" draggable="false"> </i>
+                        Pages Feed
+                    </a>
+                </li>
+
+                <li>
+                    <a onclick="activate(this.id)" id="left-part-saved" class="left-part-item" href="#saved">
+                        <i id="saved-icon" class="left-icon" draggable="false"> </i>
+                        Saved
+                    </a>
+                </li>
+
+                <li>
+                    <a onclick="activate(this.id)" id="left-part-games" class="left-part-item" href="#games">
+                        <i id="games-icon" class="left-icon" draggable="false"> </i>
+                        Games
+                    </a>
+                </li>
+
+                <li>
+                    <a onclick="activate(this.id)" class="see-more section-end" href="#explore-see-more">
+                        <i class="fas fa-caret-down left-icon down-icon"> </i>
+                        See More...
+                    </a>
+                </li>
+
+                <li>
+                    <span class="grey-header"> Create </span>
+                </li>
+
+                <li id="left-part-create-li">
+                    <a id="left-part-create-ad" class="create" href="#create-ad"> Ad </a>
+                    <span class="create dot"> · </span>
+                    <a id="left-part-create-page" class="create" href="#create-page"> Page </a>
+                    <span class="create dot"> · </span>
+                    <a id="left-part-create-group" class="create" href="#create-group"> Group </a>
+                    <span class="create dot"> · </span>
+                    <a id="left-part-create-event" class="create" href="#create-event"> Event </a>
+                </li>
+
+            </ul>
+        </div>
+
+        <!-- middle part of body -->
+        <div class="middle-part">
+            
+            <div id="make-post" class="post-section">
+                <div id="post-choices">
+                    <div id="make-post-div" class="post-div">
+
+                        Gönderi Oluştur
+                    </div>
+
+                </div>
+
+                @using (Html.BeginForm("SharePost", "Main", FormMethod.Post))
+                {
+                    <div id="post-main-div">
+                        <img src="~/imgs/@Model.MainUser.ProfilePhoto.ImageLink" alt="prof pic" class="prof-pic post-prof-pic">
+                        <div style="display:inline-block;width:auto;height:auto;">
+                            <input type="text" placeholder="Ne düşünüyorsun, @Model.MainUser.FirstName?" name="content" id="post-text">
+                        </div>
+
+                    </div>
+
+                    <div id="post-additional">
+                        <div class="post-div additional-item">
+                            <i id="photo-icon" class="post-icon"> </i>
+                            Photo/Video
+                        </div>
+
+                        <div class="post-div additional-item">
+                            <i id="feeling-icon" class="post-icon"> </i>
+                            Feeling/Activity
+                        </div>
+
+                        <div class="post-div additional-item">
+                            <i id="more-icon" class="post-icon"> </i>
+                        </div>
+
+                        <button type="submit"  name="userid" class="post-div additional-item" value="@Model.MainUser.UserId"  style="background-color:rgb(66,103,178);float:right;padding-left:5%;padding-right:5%;color:white;border:none;font-weight:bold;padding-bottom:5%;">Paylaş</button>
+         
+
+                    </div>
+                }
+               
+            </div>
+
+                
+
+                @foreach (var post in Model.Posts)
+                {
+                    <div id="post-0" class="post-section post" style="height:auto;">
+                        <div class="post-header">
+                            <img src="~/imgs/@post.User.ProfilePhoto.ImageLink" alt="LB" class="prof-pic post-prof-pic">
+                            <div class="post-info">
+                                <div class="my-day-name post-info-inner">
+                                    <span class="author-name"> @post.User.FirstName @post.User.LastName</span>
+
+                                    @if (false)
+                                    {
+                                        <span class="is-with"> is with </span>
+                                        <span class="is-with-name"> David Haller </span>
+                                    }
+                                </div>
+                                <div class="my-day-time post-time">
+                                    @((DateTime.Now-post.CreateDate).Hours) hr
+                                    <span class="dot"> · </span>
+                                    <i class="public-icon"> </i>
+                                </div>
+                            </div>
+                            <i class="dots-icon" id="post-dots"> </i>
+                        </div>
+
+                        @if (false)
+                        {
+                            <img src="~/imgs/david_and_lenny.jpg" alt="d&l" class="post-image">
+                        }
+                        <div style="margin:3%;">@post.Content</div>
+                        <div class="post-properties">
+                            @using (Html.BeginForm("MakePostLike", "Main", FormMethod.Post))
+                            {             
+                            
+                            <div class="property-div"  style="margin:0;padding-top:0;padding-bottom:5px;">
+                                <button onclick="MakeLike(this)" type="submit" name="postid" value="@post.Id" style="background-color:transparent;padding:0;border:none;height:32px;display:inline-block;">
+
+                                    <i id="like-icon" class="post-property-icon"> </i>
+                                    Beğen
+                                </button>
+
+                                <input type="text" name="userid" value="@Model.MainUser.UserId" style="display:none;" />
+
+
+                                <script>
+                                    function MakeLike(like) {
+                                        like.style["color"] = "blue";
+                                    }
+
+                                </script>
+
+                            </div>
+
+                               
+                            }
+                            <div class="property-div">
+                                <i id="comment-icon" class="post-property-icon"> </i>
+                                Yorumlar
+                            </div>
+
+                            <div class="property-div">
+                                <i id="share-icon" class="post-property-icon"> </i>
+                                Paylaş
+                            </div>
+                        </div>
+
+                        <div class="comments-section" style="background-color:transparent;height:auto;">
+                            <div class="reactions">
+                                <i class="post-property-icon" id="love-icon"> </i>
+                                @if (post.Likes.Count == 1)
+                                {
+                                    @if (post.Likes[post.Likes.Count - 1].LikeUser.UserId == Model.MainUser.UserId)
+                                    {
+                                        <span>Sen</span>
+                                     }
+                                    else
+                                    {
+                                        @post.Likes[post.Likes.Count - 1].LikeUser.FirstName <span> </span> @post.Likes[post.Likes.Count - 1].LikeUser.LastName
+                                    }
+                                }
+                                @if (post.Likes.Count > 1)
+                                {
+                                    @if (post.Likes[post.Likes.Count - 1].LikeUser.UserId == Model.MainUser.UserId)
+                                    {
+                                        <span>Sen ve </span> @(post.Likes.Count - 1); <span>diğer kişi</span>
+                                    }
+                                    else
+                                    {
+                                        @post.Likes[post.Likes.Count - 1].LikeUser.FirstName <span> </span> @post.Likes[post.Likes.Count - 1].LikeUser.LastName <span> ve </span>
+                                        @(post.Likes.Count - 1); <span>diğer kişi</span>
+                                    }
+                                }
+                                @if (post.Likes.Count == 0)
+                                {
+                                    <span>0 kişi </span>
+                                }
+                                <div style="float:right;margin-right:2px;"><span>@post.Comments.Count Yorum</span></div>
+                            </div>
+
+                            @foreach (var comment in post.Comments)
+                            {
+                                <div class="comment" style="height:auto;">
+                                    <img src="~/imgs/@comment.CommentUser.ProfilePhoto.ImageLink" alt="AF" class="prof-pic post-prof-pic comment-prof-pic">
+                                    <div class="comment-wrapper" style="height:auto;display:block; ">
+                                        <div class="comment-text" style="width:auto;height:auto;background-color:rgb(233,235,238);">
+                                            <span class="comment-author"> @comment.CommentUser.FirstName  @comment.CommentUser.LastName </span>
+                                            &nbsp;
+                                            @comment.Content
+                                            &nbsp;&nbsp;
+                                            <div style="width:auto;height:6px;"></div>
+                                        </div>
+
+                                    </div>
+                                    
+                                    <div class="comment-reaction" style="display:block;height:auto;width:426px;">
+                                        <span class="is-with-name"> Beğen </span>
+                                        <span class="dot"> · </span>
+                                        <span class="is-with-name"> Cevap Ver </span>
+                                        <span class="dot"> · </span>
+                                        <span class="comment-time"> @((DateTime.Now - comment.CreateDate).Hours) hr </span>
+                                        <div style="width:auto;height:6px;"></div>
+                                    </div>
+
+                                    @if (false) {
+                                    <div class="replies-div">
+                                        <i class="reply-icon"> </i>
+                                        <img src="~/imgs/lenny-busker.png" alt="LB" class="prof-pic post-prof-pic comment-prof-pic replies-info-pic">
+                                        <div class="is-with-name replies-info">
+                                            Lenny Busker replied · 3 Replies
+                                        </div>
+                                    </div>
+                                    }
+                                </div>
+                            }
+                        <div class="your-comment" style=" height:35px;">
+                            @using (Html.BeginForm("ShareComment", "Main", FormMethod.Post))
+                            {
+                                <img src="~/imgs/@Model.MainUser.ProfilePhoto.ImageLink" alt="prof pic" class="prof-pic post-prof-pic comment-prof-pic">
+                                <input type="text" name="content" placeholder="Yorum yaz..." class="comment-input" style="margin-left:4px;">
+                                <i id="smiley-icon" class="post-property-icon comment-inner-icon"></i>
+                                <i id="camera-icon" class="post-property-icon comment-inner-icon"></i>
+                                <i id="gif-icon" class="post-property-icon comment-inner-icon"></i>
+                                <i id="upload-photo-icon" class="post-property-icon comment-inner-icon"></i>
+                                <input type="text" name="userid" value="@Model.MainUser.UserId" style="display:none" />
+                                <input type="submit" name="postid" value="@post.Id" style="display:none" />
+                            }
+                        </div>
+                        </div>
+
+                    </div>
+                }
+
+            </div>
+
+        <!-- right part of body -->
+        <div class="right-part">
+            <div id="stories-div" class="right-part-section">
+                <div id="stories-header" class="grey-header">
+                    <i class="dots-icon"> </i>
+                    Stories
+                </div>
+
+                <div class="my-day-section">
+                    <img class="my-day-image" src="~/imgs/david-haller.jpg" alt="DH">
+                    <div class="my-day-text">
+                        <div class="my-day-name">
+                            David Haller
+                        </div>
+                        <div class="my-day-time">
+                            3 minutes ago
+                        </div>
+                    </div>
+                </div>
+
+                <div class="my-day-section">
+                    <img class="my-day-image" src="~/imgs/syd-barrett.jpg" alt="SB">
+                    <div class="my-day-text">
+                        <div class="my-day-name">
+                            Syd Barrett
+                        </div>
+                        <div class="my-day-time">
+                            10 minutes ago
+                        </div>
+                    </div>
+                </div>
+
+                <div class="my-day-section">
+                    <img class="my-day-image" src="~/imgs/lenny-busker.png" alt="LB">
+                    <div class="my-day-text">
+                        <div class="my-day-name">
+                            Lenny Busker
+                        </div>
+                        <div class="my-day-time">
+                            1 hour ago
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <a onclick="activate(this.id)" id="my-day-see-more" class="see-more" href="#my-day-see-more">
+                        <i class="fas fa-caret-down down-icon"> </i>
+                        See More...
+                    </a>
+                </div>
+
+            </div>
+
+            <div id="events-div" class="right-part-section">
+                <div>
+                    <a onclick="activate(this.id)" id="right-part-events" class="right-part-item" href="#events">
+                        <img src="~/imgs/events-small.png" class="right-icon" alt="ev">
+                        3 event invites
+                    </a>
+                </div>
+
+                <div>
+                    <a onclick="activate(this.id)" id="right-part-birthdays" class="right-part-item" href="#birthdays">
+                        <i class="right-icon" id="birthday-icon"> </i>
+                        <span> Professor X </span>
+                        <span id="and-span"> and </span>
+                        <span id="num-birthdays-span">2 others</span>
+                    </a>
+                </div>
+            </div>
+
+            <div id="suggestions-div" class="right-part-section" style="height:auto;">
+                <div class="grey-header" id="suggestions-header">
+                    People You May Know
+                    <div id="see-all-div">
+                        See All
+                    </div>
+                </div>
+
+                @foreach (var friend in Model.AllUsers)
+                {
+                   
+                    @using (Html.BeginForm("AddFriend", "Main", FormMethod.Post))
+                    {
+                        <div class="suggestions-section">
+                            <img class="suggestions-image" src="~/imgs/@friend.ProfilePhoto.ImageLink" alt="C">
+                            <div class="suggestions-text">
+                                <i class="x-icon" draggable="false"> </i>
+                                <div class="my-day-name suggestions-name">
+                                    @friend.FirstName @friend.LastName
+                                </div>
+                                <div class="my-day-time suggestions-mutual">
+                                    28 mutual friends
+                                </div>
+                                <button name="friendid" value="@friend.UserId" class="add-friend-button" type="submit">
+                                    <i class="add-friend-icon" draggable="false"> </i>
+                                    Ekle
+                                </button>
+                                <input type="text" name="userid" value="@Model.MainUser.UserId" style="display:none;" />
+                            </div>
+                        </div>
+                    }
+                }
+                
+            </div>
+                
+            <div id="languages-div" class="right-part-section">
+                <div id="languages-inner">
+                    <a id="language-english" onclick="activate_language(this.id)" class="language active-language"> English(US) </a>
+                    <span class="language dot"> · </span>
+                    <a id="language-georgian" onclick="activate_language(this.id)" class="language"> ქართული </a>
+                    <span class="language dot"> · </span>
+                    <a id="language-russian" onclick="activate_language(this.id)" class="language"> Русский </a>
+                    <span class="language dot"> · </span>
+                    <a id="language-spanish" onclick="activate_language(this.id)" class="language"> Español </a>
+                    <span class="language dot"> · </span>
+                    <a id="language-brasil" onclick="activate_language(this.id)" class="language"> Português (Brasil) </a>
+                </div>
+
+                <div id="plus-div">
+                    <i id="plus-icon"> </i>
+                </div>
+            </div>
+
+            <div id="right-part-properties">
+                <div id="properties-inner">
+                    <a class="property"> Privacy </a>
+                    <span class="property dot"> · </span>
+                    <a class="property"> Terms </a>
+                    <span class="property dot"> · </span>
+                    <a class="property"> Advertising </a>
+                    <span class="property dot"> · </span>
+                    <a class="property"> Ad Choices </a>
+                    <span class="property dot"> · </span>
+                    <a class="property"> Cookies </a>
+                    <span class="property dot"> · </span>
+                    <a class="property"> More </a>
+                </div>
+            </div>
+
+            <div id="copyright-span"> Facebook © 2018 </div>
+
+        </div>
+
+       
+    </div>
+
+    <script src="~/js/custom.js"></script>
+</body>
+</html>
